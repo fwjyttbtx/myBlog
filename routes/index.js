@@ -1,3 +1,5 @@
+var Post = require('../modules/data/post');
+
 module.exports = function(app){
     app.get('/', function(req, res){
         console.log(req.params.code);
@@ -14,7 +16,13 @@ module.exports = function(app){
     });
 
     app.post('/blog/publish', function(req, res){
-
+        //console.log(req);
+        var data = req.body;
+        var post = new Post(data.title, data.content, data.tags, data.time);
+        post.save(function(err){
+            if(err) return res.redirect('/');
+            console.log('发表成功');
+        });
     });
 
 }
