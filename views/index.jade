@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  //页首
+  include includes/head
+  //页面部分
+  div.container-fluid#main-content
+    div.row-fluid
+      //菜单部分
+      include includes/menu
+      //垂直分割线
+      div.vertical-line
+      //文章主体部分
+      div.span9
+        div.hero-unit
+          h1 Welcome To My Blog
+          p &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里是我的微博设计,页面是首页这个页面应该推送一些文章.
+        div.row-fluid
+        div.row-fluid
+  //页脚
+  hr
+  include includes/foot

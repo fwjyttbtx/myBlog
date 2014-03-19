@@ -1,0 +1,14 @@
+div.span3
+  div#main-menu
+    ul.nav.nav-list
+      li.active
+        a 首页
+      li
+        a 文章
+      li
+        a 存档
+      -if (secret == 'weijie')
+        li
+          a.write-log(href='/blog/write') 写文章
+      li
+        a 关于
