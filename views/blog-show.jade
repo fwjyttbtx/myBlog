@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  include includes/head
+  div.container-fluid
+    div.row-fluid
+      div.span2
+        div.message
+          div.post-date
+            div.post-month= data.month
+            div.post-day= data.day
+            div.post-year= data.year
+          div.tag-box
+            h5 Tags:
+            -if(data.tags)
+              each tag in tags
+                div.tags= tag
+            -else
+              div.tags No Tags
+      div.span8.middle-content
+          div#title
+            h1= data.title
+          div#content!= data.content
+          div#review
+      div.span2
+  include includes/foot
