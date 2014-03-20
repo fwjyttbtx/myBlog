@@ -1,6 +1,4 @@
 jQuery(function($){
-    var writeLog = $('.write-log');
-
     $("#publish").click(function(e){
         e.preventDefault();
         var data = {};
@@ -10,8 +8,8 @@ jQuery(function($){
             url: '/blog/publish',
             type: 'POST',
             data: data,
-            success: function(mes){
-                alert("data store " + mes);
+            success: function(data){
+                window.location.href = '/blog/show/' + data.id;
             }
         })
     });

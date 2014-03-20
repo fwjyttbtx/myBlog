@@ -22,6 +22,21 @@ module.exports = function(app){
         post.save(function(err){
             if(err) return res.redirect('/');
             console.log('发表成功');
+            return res.send(post);
+        });
+    });
+
+    app.get('/blog/show/:postId', function(req, res){
+        Post.getOne(req.params.postId, function(err, data){
+            if(err) throw err;
+            if(!data) return res.render(404);
+            //处理下日期的格式
+            data.year = data.time.getFullYear();
+            var month = ['一月', '二月', '三月', '四月', '五月',
+                '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+            data.month = month[data.time.getMonth()];
+            data.day = data.time.getDate();
+            res.render('blog-show', { data: data });
         });
     });
 
