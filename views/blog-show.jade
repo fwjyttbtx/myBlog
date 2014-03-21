@@ -2,6 +2,7 @@ extends layout
 
 block content
   include includes/head
+  script(type='text/javascript', src='/javascripts/loading.js')
   div.container-fluid
     div.row-fluid
       div.span2
@@ -22,5 +23,10 @@ block content
             h1= data.title
           div#content!= data.content
           div#review
+            div#disqus_thread
+            noscript Please enable JavaScript to view the
+              a(href='http://disqus.com/?ref_noscript') comments powered by Disqus
+            a.dsq-brlink(href='http://disqus.com') comments powered by
+              span.logo-disqus Disqus
       div.span2
   include includes/foot

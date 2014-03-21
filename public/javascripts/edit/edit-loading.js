@@ -1,48 +1,18 @@
 $(document).ready(function () {
     'use strict'
-    function initToolbarBootstrapBindings() {
-        var fonts = ['宋体', '微软雅黑', 'Arial', 'Arial Black', 'Courier New', 'Times New Roman'],
-            fontTarget = $('[title=Font]').siblings('.dropdown-menu');
-        $.each(fonts, function (idx, fontName) {
-            fontTarget.append($('<li><a data-edit="fontName ' +
-                fontName + '" style="font-family:\'' + fontName + '\'">' +
-                fontName + '</a></li>'));
+    var editor;
+    KindEditor.ready(function(K){
+        editor = K.create('textarea[name="content"]', {
+            resizeType : 1,
+            allowPreviewEmoticons : false,
+            allowImageUpload : true,
+            url:'/upload/location',
+            items : [
+                'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                'insertunorderedlist', '|', 'emoticons', 'image', 'link', '|', 'source', 'code']
         });
-        $('a[title]').tooltip({
-            container: 'body'
-        });
-        $('.dropdown-menu input').click(function () {
-            return false;
-        }).change(function () {
-                $(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');
-            }).keydown('esc', function () {
-                this.value = '';
-                $(this).change();
-            });
-
-        $('[data-role=magic-overlay]').each(function () {
-            var overlay = $(this), target = $(overlay.data('target'));
-            overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
-        });
-    };
-    function showErrorAlert(reason, detail) {
-        var msg = '';
-        if (reason === 'unsupported-file-type') {
-            msg = "Unsupported format " + detail;
-        } else {
-            console.log("error uploading file", reason, detail);
-        }
-        $('<div class="alert"> <button type="button" ' +
-            'class="close" data-dismiss="alert">&times;</button>' +
-            '<strong>File upload error</strong> ' + msg + ' </div>')
-            .prependTo('#alerts');
-    };
-    initToolbarBootstrapBindings();
-    $('#editor').wysiwyg({
-        fileUploadError: showErrorAlert
     });
-    window.prettyPrint && prettyPrint();
-
 
     $('#fileupload').fileupload({
         dataType : 'json',

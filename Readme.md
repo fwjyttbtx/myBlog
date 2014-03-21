@@ -15,4 +15,10 @@
 &nbsp;&nbsp;写博客需要集成一个富文本的编辑器,采用bootstrap-wysiwyg.js来完成富文本的编辑器,<br/>
 &nbsp;&nbsp;改造其中的图片插入,配合jquery-file-upload插件来做图片的上传,图片上传之后存于服务器中<br/>
 4.上传文章<br/>
-&nbsp;&nbsp;增加文章上传到mysql的支持.
+&nbsp;&nbsp;增加文章上传到mysql的支持.<br/>
+5.显示文章<br/>
+&nbsp;&nbsp;写完文章之后通过文章的id跳转到文章视图<br/>
+6.修改编辑器<br/>
+&nbsp;&nbsp;不采用bootstrap的wysiwyg作为富文本的编辑器了,改用kindeditor<br/>
+7.本地上传组件失效<br/>
+&nbsp;&nbsp;由于前端没有用upload组件,所以后台也无法正确解析和返回数据,思考解决办法

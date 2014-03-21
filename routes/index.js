@@ -22,7 +22,7 @@ module.exports = function(app){
         post.save(function(err){
             if(err) return res.redirect('/');
             console.log('发表成功');
-            return res.send(post);
+            res.redirect('/blog/show/' + post.id);
         });
     });
 

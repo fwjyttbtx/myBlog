@@ -1,88 +1,11 @@
-script(type='text/javascript', src='/javascripts/edit/jquery.hotkeys.js')
-script(type='text/javascript', src='/javascripts/edit/bootstrap-wysiwyg.js')
-script(type='text/javascript', src='/javascripts/jquery.ui.widget.js')
-script(type='text/javascript', src='/javascripts/upload/load-image.min.js')
-script(type='text/javascript', src='/javascripts/upload/canvas-to-blob.min.js')
-script(type='text/javascript', src='/javascripts/upload/jquery.fileupload.js')
-script(type='text/javascript', src='/javascripts/upload/jquery.fileupload-process.js')
-script(type='text/javascript', src='/javascripts/upload/jquery.fileupload-image.js')
-script(type='text/javascript', src='/javascripts/upload/jquery.fileupload-validate.js')
-script(type='text/javascript', src='/javascripts/upload/jquery.fileupload-ui.js')
+script(type='text/javascript', src='/kindeditor/kindeditor.js')
+script(type='text/javascript', src='/kindeditor/lang/zh_CN.js')
 script(type='text/javascript', src='/javascripts/edit/edit-loading.js')
+
 div.hero-unit
-  div 标题
-  input#title.input-xxlarge(type='text', placeholder='请在此输入标题,控制字数在8-20个')
-  div 内容
-  div.btn-toolbar(data-role='editor-toolbar', data-target='#editor')
-    div.btn-group
-      a.btn.dropdown-toggle(data-toggle='dropdown', title='Font')
-        i.icon-font
-        b.caret
-      ul.dropdown-menu
-    div.btn-group
-      a.btn.dropdown-toggle(data-toggle='dropdown', title='Font Size')
-        i.icon-text-height &nbsp;
-        b.caret
-      ul.dropdown-menu
-        li
-          a(data-edit='fontSize 5')
-            font(size='5') Huge
-        li
-          a(data-edit='fontSize 3')
-            font(size='3') Normal
-        li
-          a(data-edit='fontSize 1')
-            font(size='1') Small
-    div.btn-group
-      a.btn(data-edit='bold', title='Bold (Ctrl/Cmd + B)')
-        i.icon-bold
-      a.btn(data-edit='italic', title='Italic (Ctrl/Cmd+I)')
-        i.icon-italic
-      a.btn(data-edit='strikethrough', title='Strikethrough')
-        i.icon-strikethrough
-      a.btn(data-edit='underline', title='Underline (Ctrl/Cmd+U)')
-        i.icon-underline
-    div.btn-group
-      a.btn(data-edit='insertunorderedlist', title='Bullet list')
-        i.icon-list-ul
-      a.btn(data-edit='insertorderedlist', title='Number list')
-        i.icon-list-ol
-      a.btn(data-edit='outdent', title='Reduce indent (Shift+Tab)')
-        i.icon-indent-left
-      a.btn(data-edit='indent', title='Indent (Tab)')
-        i.icon-indent-right
-    div.btn-group
-      a.btn(data-edit='justifyleft', title='Align Left (Ctrl/Cmd+L)')
-        i.icon-align-left
-      a.btn(data-edit='justifycenter', title='Center (Ctrl/Cmd+E)')
-        i.icon-align-center
-      a.btn(data-edit='justifyright', title='Align Right (Ctrl/Cmd+R)')
-        i.icon-align-right
-      a.btn(data-edit='justifyfull', title='Justify (Ctrl/Cmd+J)')
-        i.icon-align-justify
-    div.btn-group
-      a.btn.dropdown-toggle(data-toggle='dropdown', title='Hyperlink')
-        i.icon-link
-      div.dropdown-menu.input-append
-        input.span2(type='text', placeholder='URL', data-edit='createLink')
-        button.btn(type='button') Add
-      a.btn(data-edit='unlink', title='Remove Hyperlink')
-        i.icon-cut
-    div.btn-group
-      a.btn#pictureBtn(title='Insert picture(or just drag & drop)', data-toggle='modal', href='#myModal')
-        i.icon-picture
-      div#myModal.modal.hide.fade(tabindex='-1', role='dialog', aria-labelleby='myModalLabel', aria-hidden='true')
-        div.modal-header
-          span.btn.btn-success.fileinput-button
-            i.icon-plus
-            span 上传...
-            input#fileupload(type='file', name='files[]', multiple="")
-        div.modal-body
-          div#files.files
-    div.btn-group
-      a.btn(data-edit='undo', title='Undo (Ctrl/Cmd+Z)')
-        i.icon-undo
-      a.btn(data-edit='redo', title='Redo (Ctrl/Cmd+Y)')
-        i.icon-repeat
-  div#editor
-  button#publish.btn.btn-info 发布
+  form(action='/blog/publish', method='post')
+    div 标题
+    input#title.input-xxlarge(type='text', name='title', placeholder='请在此输入标题,控制字数在8-20个')
+    div 内容
+    textarea#editor(name='content')
+    button.btn.btn-success(type='submit') 发布
