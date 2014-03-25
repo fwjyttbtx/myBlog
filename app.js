@@ -35,6 +35,11 @@ if ('development' == app.get('env')) {
 //路由分离
 routes(app);
 
+//处理404
+app.use(function(req, res){
+    res.render('404', { title: '文件未找到' });
+});
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
