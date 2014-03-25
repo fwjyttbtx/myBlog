@@ -2,5 +2,15 @@ extends layout
 
 block content
   include includes/head
-  h1 404 页面之后写
+  div.container
+    div.hero-unit.notfound-container
+      h3 对不起 ，您要找的资源不存在或已被删除哦^_^
+      img(src='/img/notfound.gif')
+      h4 可能是以下原因导致资源无法找到
+      ul.nav.nav-list.notfound
+        li 1.您请求的url地址不正确ToT
+        li 2.资源已被管理员删除&gt;o&lt;
+        li 3.服务器故障-_-
+      div
+        a(href='/') 首页
   include  includes/foot
