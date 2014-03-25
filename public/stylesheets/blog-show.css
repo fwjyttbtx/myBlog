@@ -41,4 +41,10 @@
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
+
+}
+
+.middle-content #content {
+    word-wrap: break-word;
+    word-break: normal;
 }

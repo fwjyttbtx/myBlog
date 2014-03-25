@@ -198,8 +198,10 @@ KindEditor.plugin('image', function(K) {
 			target : target,
 			width: 60,
 			afterUpload : function(data) {
+                //使用的是jqueryfileupload插件的后台
+                var data = data.files[0];
 				dialog.hideLoading();
-				if (data.error === 0) {
+				if (!data.error) {
 					var url = data.url;
 					if (formatUploadUrl) {
 						url = K.formatUrl(url, 'absolute');
@@ -215,7 +217,7 @@ KindEditor.plugin('image', function(K) {
 						K(".ke-refresh-btn", div).click();
 					}
 				} else {
-					alert('from image.js 218 ' + data.message);
+					alert(data.error);
 				}
 			},
 			afterError : function(html) {
