@@ -1,6 +1,6 @@
 {
     "host": "localhost",
     "user": "root",
-    "password": "weijie_12@08",
+    "password": "mysql",
     "database": "myblog"
 }

@@ -14,84 +14,39 @@ $(document).ready(function () {
         });
     });
 
-    $('#fileupload').fileupload({
-        dataType : 'json',
-        url : '/upload/location',
-        autoUpload : true,
-        sequentialUploads : true,
-        acceptFileTypes : /(\.|\/)(gif|jpe?g|png)$/i,
-        maxFileSize: 2000000,//2MB
-        previewMaxWidth: 120,
-        previewMaxHeight: 80,
-        previewCrop: true,
-        process : [{
-            action : 'load',
-            fileTypes : /^image\/(gif|jpeg|png)$/,
-            maxFileSize : 2000000 // 2MB
-        }, {
-            action : 'resize',
-            maxWidth : 1200,
-            maxHeight : 800
-        }, {
-            action : 'save'
-        }],
-        dropZone : $('#myModal'),
-        progressall : function(e, data) {
-            var progress = parseInt(data.loaded / data.total * 100, 10);
-            //$('#gallery_progress .bar').css('width', progress + '%');
-        },
-        filesContainer : $('#files'),
-        uploadTemplate : function(o) {
-            var rows = $();
-            $.each(o.files, function(index, file) {
-                var row = $('<div class="template-upload">' +
-                    '<div class="preview"></div>' +
-                    '<span class="cancel"><button class="btn btn-danger" type="button">Delete</button></span>' +
-                    '<span class="name"></span>' +
-                    '<span class="size"></span>' +
-                    '</div>');
-                row.find('.name').text(file.name);
-                row.find('.size').text(o.formatFileSize(file.size));
-                if (file.error) {
-                    row.find('.error').text(file.error || 'File upload error');
-                }
-                rows = rows.add(row);
-            });
-            return rows;
-        },
-        downloadTemplate : function(o) {
-            var rows = $();
-            $.each(o.files, function(index, file) {
-                var row = $('<div class="template-download">' +
-                    (file.error ? '<span class="name"></span>' +
-                        '<span class="error text-error"></span>' :
-                        '<div class="preview"></div>' +
-                            '<span class="name"><a></a></span>' +
-                            '<span class="size"></span>') +
-                    '<span class="delete"><button class="btn btn-danger" type="button">Delete</button></span>'+
-                    '<span class="insert"><button class="btn btn-success" type="button">Insert</button></span>'+
-                    '</div>');
-                row.find('.size').text(o.formatFileSize(file.size));
-                if (file.error) {
-                    row.find('.name').text(file.name);
-                    row.find('.error').text(file.error || 'File upload error');
-                } else {
-                    row.find('.name a').text(file.name);
-                    if (file.url) {
-                        row.find('.preview').append('<a><img></a>').find('img').prop('src', file.url).css({width: '120px', height: '80px'});
-                        row.find('a').prop('rel', 'gallery');
-                        row.find('a').prop('target', '_blank');
-                    }
-                    row.find('a').prop('href', file.url);
-                    row.find('.delete').attr('data-type', file.delete_type).attr('data-url', file.deleteUrl);
-                    row.find('.insert').attr('data-dismiss', 'modal').attr('data-url', file.url);
-                    // add file data input
-                    row.append('<input type="hidden" name="galleryImage[]">').find('input[name="galleryImage[]"]').val(file.name);
-                    row.find('img').data('fileinfo', file);
-                }
-                rows = rows.add(row);
-            });
-            return rows;
+    var tags = $('#tags-input');
+
+    tags.change(function(){
+        var tagsVal = tags.val();
+        var tagsArr = tagsVal.split(";");
+        if(tagsVal.lastIndexOf(';') == (tagsVal.length - 1)){
+            tagsArr.pop();
+        }
+
+        var tagContent = $('.tag-content');
+        var html = '';
+        for(var i = 0; i < tagsArr.length; i++){
+            html += '<span class="every-tag">' + tagsArr[i] + '</span>';
+        }
+        if(tags){
+            tags.removeAttr('placeholder');
+            tags.val('');
+        }
+        tagContent.html(html);
+        var left = tagContent.width();
+        tags.css('padding-left', left);
+
+    });
+    tags.keydown(function(e){
+        var tagContent = $('.tag-content');
+        if(e.keyCode == 8){
+            tagContent.find('span:last').remove();
+            var left = tagContent.width();
+            tags.css('padding-left', left);
+            if(tagContent.find('span').length == 0){
+                tags.css('padding-left', '4px');
+                tags.attr('placeholder', '请在此输入标签，多个标签以英文‘;’隔开');
+            }
         }
     });
 

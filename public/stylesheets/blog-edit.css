@@ -38,3 +38,29 @@
     direction: ltr;
     cursor: pointer;
 }
+
+.tag-box1 {
+    position: relative;
+}
+
+.tag-content {
+    position: absolute;
+    left: 4px;
+    top: 23px;
+}
+
+.tag-content span {
+    cursor: default;
+    display: inline-block;
+    border: solid 1px #ccc;
+    background-color: #ffffcc;
+    border-radius: 5px;
+    padding: 2px 4px;
+    margin-right: 4px;
+    font: 12px Arial;
+}
+
+#tags-input {
+    width: 458px;
+    max-width: 458px;
+}

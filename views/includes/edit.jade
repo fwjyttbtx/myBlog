@@ -4,8 +4,12 @@ script(type='text/javascript', src='/javascripts/edit/edit-loading.js')
 
 div.hero-unit
   form(action='/blog/publish', method='post')
-    div 标题
+    label 标题
     input#title.input-xxlarge(type='text', name='title', placeholder='请在此输入标题,控制字数在8-20个')
-    div 内容
+    div.tag-box1
+      label Tags
+      input#tags-input(type='text', name='tags', placeholder='请在此输入标签，多个标签以英文‘;’隔开')
+      div.tag-content
+    label 内容
     textarea#editor(name='content')
     button.btn.btn-success(type='submit') 发布

@@ -7,7 +7,7 @@ function Post(title, content, tags, time){
     this.id = new Date().getTime();
     this.title = title;
     this.content = content;
-    this. tags = tags;
+    this.tags = tags;
     if(time){
         this.time = time;
     }else{
